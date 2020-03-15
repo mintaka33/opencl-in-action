@@ -1,0 +1,32 @@
+LABEL0
+(W)      mov (8|M0)               r3.0<1>:ud    r0.0<1;1,0>:ud                  
+(W)      or (1|M0)                cr0.0<1>:ud   cr0.0<0;1,0>:ud   0x4C0:uw         {Switch}
+(W)      mul (1|M0)               r126.0<1>:d   r9.0<0;1,0>:d     r3.1<0;1,0>:d    {Compacted}
+(W)      mov (1|M0)               r119.0<1>:uq  r8.1<0;1,0>:uq                  
+(W)      mov (8|M0)               r127.0<1>:ud  r3.0<8;8,1>:ud                   {Compacted}
+         add (16|M0)              r4.0<1>:d     r126.0<0;1,0>:d   r1.0<16;16,1>:uw
+         add (16|M16)             r124.0<1>:d   r126.0<0;1,0>:d   r2.0<16;16,1>:uw
+(W)      send (4|M0)              r6       r119    0xC         0x21D08FF  //  wr:1h+?, rd:1, A64 Block Read msc:8, to global memory
+         add (16|M0)              r10.0<1>:d    r4.0<8;8,1>:d     r7.0<0;1,0>:d    {Compacted}
+         add (16|M16)             r122.0<1>:d   r124.0<8;8,1>:d   r7.0<0;1,0>:d   
+         shl (16|M0)              r12.0<1>:d    r10.0<8;8,1>:d    4:w             
+         shl (16|M16)             r120.0<1>:d   r122.0<8;8,1>:d   4:w             
+         shl (16|M0)              r16.0<1>:d    r10.0<8;8,1>:d    2:w             
+         shl (16|M16)             r99.0<1>:d    r122.0<8;8,1>:d   2:w             
+         add (16|M0)              r12.0<1>:d    r12.0<8;8,1>:d    r8.6<0;1,0>:d    {Compacted}
+         add (16|M16)             r120.0<1>:d   r120.0<8;8,1>:d   r8.6<0;1,0>:d   
+         add (16|M0)              r16.0<1>:d    r16.0<8;8,1>:d    r8.7<0;1,0>:d    {Compacted}
+         add (16|M16)             r99.0<1>:d    r99.0<8;8,1>:d    r8.7<0;1,0>:d   
+         send (16|M0)             r111:w   r12     0xC         0x4805000  //  wr:2+?, rd:8, Untyped Surface Read msc:16, to bti 0
+         send (16|M16)            r103:w   r120    0xC         0x4805000  //  wr:2+?, rd:8, Untyped Surface Read msc:16, to bti 0
+         mul (16|M0)              r14.0<1>:f    r117.0<8;8,1>:f   r6.3<0;1,0>:f    {Compacted}
+         mul (16|M16)             r101.0<1>:f   r109.0<8;8,1>:f   r6.3<0;1,0>:f   
+         mad (16|M0)              r14.0<1>:f    r14.0<2;1>:f      r115.0<2;1>:f     r6.2<0>:f        {Compacted}
+         mad (16|M16)             r101.0<1>:f   r101.0<2;1>:f     r107.0<2;1>:f     r6.2<0>:f        {Compacted}
+         mad (16|M0)              r14.0<1>:f    r14.0<2;1>:f      r113.0<2;1>:f     r6.1<0>:f        {Compacted}
+         mad (16|M16)             r101.0<1>:f   r101.0<2;1>:f     r105.0<2;1>:f     r6.1<0>:f        {Compacted}
+         mad (16|M0)              r14.0<1>:f    r14.0<2;1>:f      r111.0<2;1>:f     r6.0<0>:f        {Compacted}
+         mad (16|M16)             r101.0<1>:f   r101.0<2;1>:f     r103.0<2;1>:f     r6.0<0>:f        {Compacted}
+         sends (16|M0)            null:w   r16     r14     0x8C        0x4025E02  //  wr:2+2, rd:0, Untyped Surface Write msc:30, to bti 2
+         sends (16|M16)           null:w   r99     r101    0x8C        0x4025E02  //  wr:2+2, rd:0, Untyped Surface Write msc:30, to bti 2
+(W)      send (8|M0)              null     r127    0x27        0x2000010  {EOT} //  wr:1+?, rd:0,  end of thread
