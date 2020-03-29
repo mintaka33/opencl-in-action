@@ -29,7 +29,7 @@ int main() {
     size_t program_size, log_size;
     cl_kernel kernel;
     size_t offset = 0;
-    size_t global_size, local_size;
+    size_t global_size = 0, local_size = 0;
 
     /* Data and buffers */
     char pattern[] = "thatwithhavefrom";

@@ -27,7 +27,7 @@ int main() {
     }
 
     /* Determine number of connected devices */
-    err = clGetDeviceIDs(platform, CL_DEVICE_TYPE_ALL, 0, NULL, &num_devices);
+    err = clGetDeviceIDs(platform, CL_DEVICE_TYPE_GPU, 0, NULL, &num_devices);
     if (err < 0) {
         perror("Couldn't find any devices");
         exit(1);
@@ -36,7 +36,7 @@ int main() {
     /* Access connected devices */
     devices = (cl_device_id*)
         malloc(sizeof(cl_device_id) * num_devices);
-    clGetDeviceIDs(platform, CL_DEVICE_TYPE_ALL,
+    clGetDeviceIDs(platform, CL_DEVICE_TYPE_GPU,
         num_devices, devices, NULL);
 
     /* Obtain data for each connected device */
