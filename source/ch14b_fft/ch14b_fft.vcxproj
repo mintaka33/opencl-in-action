@@ -186,6 +186,8 @@
       <AdditionalLibraryDirectories>$(INTELOCLSDKROOT)lib\x64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>OpenCL.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+      <StackCommitSize>4000000</StackCommitSize>
+      <StackReserveSize>8000000</StackReserveSize>
     </Link>
     <PostBuildEvent>
       <Command>If exist "*.cl" copy "*.cl" "$(OutDir)\"</Command>

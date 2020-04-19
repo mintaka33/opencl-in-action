@@ -102,8 +102,8 @@ cl_program build_program(cl_context ctx, cl_device_id dev, const char* filename)
    return program;
 }
 
-int main() {
-
+int main(int argc, char** argv) 
+{
    /* Host/device data structures */
    cl_device_id device;
    cl_context context;
@@ -120,6 +120,7 @@ int main() {
    float data[NUM_POINTS*2];
    double error, check_input[NUM_POINTS][2], check_output[NUM_POINTS][2];
    cl_mem data_buffer;
+
 
    /* Initialize data */
    srand(time(NULL));
